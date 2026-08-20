@@ -1,0 +1,25 @@
+{
+  "name": "tinyvit21m_phase2_best",
+  "description": "Best Phase-2 checkpoint: TinyViT-21M + PixelShuffle connector + SmolLM LoRA (VQA + caption + face mix)",
+  "source_checkpoint": "checkpoints/phase2/best",
+  "step": 2122000,
+  "val_loss": 1.2134716747852206,
+  "architecture": {
+    "vision": "TinyViT-21M @ 512 (weights/tinyvit)",
+    "language": "SmolLM from weights/smol + LoRA r=16",
+    "connector": "PixelShuffle scale_factor=2, image_seq_len=64"
+  },
+  "files": {
+    "connector.pt": "Trained vision-language connector",
+    "lora/": "PEFT LoRA adapters for text_model"
+  },
+  "base_weights_required": [
+    "weights/smol (tokenizer + LLM + lm_head)",
+    "weights/tinyvit (TinyViT-21M)"
+  ],
+  "code_required": [
+    "models/",
+    "data/common.py",
+    "scripts/infer_utils.py (or this package example_infer.py)"
+  ]
+}
